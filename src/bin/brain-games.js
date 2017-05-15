@@ -1,2 +1,5 @@
 #!/usr/bin/env node
-console.log("Welcome to the Brain Games!");
+import userName from '..';
+
+console.log("Welcome to the Brain Games!\n");
+setTimeout(() => console.log('\nHello, ' + userName() + '!'), 1000);

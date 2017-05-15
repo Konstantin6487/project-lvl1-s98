@@ -1,6 +1,6 @@
 {
   "name": "brain-games_konstantin6487",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "author": "Konstantin6487 <Konstantin6487@rambler.ru>",
@@ -13,10 +13,14 @@
      "prepublish": "npm run build"
   },
   "license": "MIT",
+  "dependencies": {
+    "readline-sync": "*"
+  },
   "devDependencies": {
     "babel-cli": "*",
     "babel-core": "*",
     "babel-preset-env": "*",
-    "babel-preset-stage-0": "*"
+    "babel-preset-stage-0": "*",
+    "readline-sync": "*"
   }
 }
