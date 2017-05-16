@@ -31,7 +31,7 @@ export default () => {
     }
     const answer = readlineSync.question(`Question: ${arr[i]} `);
     if (isEven(arr[i]) === answer) {
-      console.log(`Your answer: ${answer}\nCorrect!`);
+      console.log(`Your answer: ${answer}\nCorrect!\n`);
       return iter(i + 1, arr);
     }
     if (isEven(arr[i]) !== answer) {
