@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import run from '../game_1';
+import run from '../brain-even.engine';
 
 console.log(run());
