@@ -11,13 +11,12 @@ const checkParity = (val) => {
   return 'no';
 };
 
-
-const getRandArr = (min = minInt, max = maxInt, count = intCount, acc = []) => {
+const fillRandArr = (min = minInt, max = maxInt, count = intCount, acc = []) => {
   const calcRandInt = Math.round((min - 0.5) + (Math.random() * ((max - min) + 1)));
-  return count === 0 ? acc : getRandArr(min, max, count - 1, [calcRandInt, ...acc]);
+  return count === 0 ? acc : fillRandArr(min, max, count - 1, [calcRandInt, ...acc]);
 };
 
-const intArr = getRandArr();
+const intArr = fillRandArr();
 const intArrLength = intArr.length;
 
 export default () => {
