@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import run from '../brain-even.engine';
+import run from '../brain-even-data';
 
-console.log(run());
+run();
