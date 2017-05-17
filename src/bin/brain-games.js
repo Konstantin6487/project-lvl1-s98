@@ -2,4 +2,4 @@
 
 import run from '..';
 
-console.log(run());
+run();
