@@ -1,12 +1,13 @@
 {
   "name": "brain-games_konstantin6487",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "",
   "main": "index.js",
   "author": "Konstantin6487 <Konstantin6487@rambler.ru>",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
-    "brain-even": "dist/bin/brain-even.js"
+    "brain-even": "dist/bin/brain-even.js",
+    "brain-even": "dist/bin/brain-calc.js"
   },
   "scripts": {
     "babel-node": "babel-node",
