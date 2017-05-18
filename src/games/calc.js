@@ -1,8 +1,7 @@
-import readlineSync from 'readline-sync';
+import engine from '../engine';
+import { stepsCount } from '../initial';
+import calcRandInt from '../utils';
 
-const stepsCount = 3;
-const minInt = 0;
-const maxInt = 100;
 const operations = ['+', '-', '*'];
 
 const calcPairSum = (x, y) => (x + y).toString();
@@ -22,11 +21,6 @@ const getCorrAmount = (arr) => {
   }
 };
 
-const calcRandInt = (min = minInt, max = maxInt) => {
-  const rand = (min - 0.5) + (Math.random() * ((max - min) + 1));
-  return Math.round(rand);
-};
-
 const fillMathExprArr = (count = stepsCount, acc = []) => {
   if (count === 0) {
     return acc;
@@ -37,27 +31,8 @@ const fillMathExprArr = (count = stepsCount, acc = []) => {
   return fillMathExprArr(count - 1, [[leftInt, operations[oprIndex], rightInt], ...acc]);
 };
 
+const userMessage = 'What is the result of the expression?\n';
 const mathExprArr = fillMathExprArr();
 const mathExprArrLen = mathExprArr.length;
 
-export default () => {
-  console.log('Welcome to Brain Games!\nWhat is the result of the expression?');
-  const userName = readlineSync.question('\nMay I have your name? ');
-  console.log(`Hello, ${userName}!\n`);
-
-  const runGame = (currStep, arr) => {
-    if (currStep === mathExprArrLen) {
-      return console.log(`Congratulations, ${userName}!`);
-    }
-    const answer = readlineSync.question(`Question: ${arr[currStep].join(' ')} `);
-    if (getCorrAmount(arr[currStep]) === answer) {
-      console.log(`Your answer: ${answer}\nCorrect!\n`);
-      return runGame(currStep + 1, arr);
-    }
-    if (getCorrAmount(arr[currStep]) !== answer) {
-      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${getCorrAmount(arr[currStep])}'.\nLet's try again, ${userName}!`);
-    }
-    return false;
-  };
-  return runGame(0, mathExprArr);
-};
+export default() => engine(userMessage, mathExprArr, mathExprArrLen, getCorrAmount);
