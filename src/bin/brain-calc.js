@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import launchGame from '../brain-calc-data';
+import launchGame from '../calc';
 
 launchGame();
