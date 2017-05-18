@@ -1,38 +1,37 @@
-import engine from '../engine';
-import { stepsCount } from '../initial';
-import calcRandInt from '../utils';
-
-const operations = ['+', '-', '*'];
-
-const calcPairSum = (x, y) => (x + y).toString();
-const calcPairProd = (x, y) => (x * y).toString();
-const calcPairDiff = (x, y) => (x - y).toString();
-
-const getCorrAmount = (arr) => {
-  switch (arr[1]) {
-    case '+':
-      return calcPairSum(arr[0], arr[2]);
-    case '-':
-      return calcPairDiff(arr[0], arr[2]);
-    case '*':
-      return calcPairProd(arr[0], arr[2]);
+const cons = (a, b) => (message) => {
+  switch (message) {
+    case 'car':
+      return a;
+    case 'cdr':
+      return b;
     default:
-      return console.log('invalid operation');
+      return 'error';
   }
 };
 
-const fillMathExprArr = (count = stepsCount, acc = []) => {
-  if (count === 0) {
-    return acc;
-  }
-  const leftInt = calcRandInt();
-  const rightInt = calcRandInt();
-  const oprIndex = calcRandInt(0, operations.length - 1);
-  return fillMathExprArr(count - 1, [[leftInt, operations[oprIndex], rightInt], ...acc]);
+export default () => {
+  const statements = ['+', '-', '*'];
+  const getRandInt = (min = 0, max = 100) => {
+    const rand = (min - 0.5) + (Math.random() * ((max - min) + 1));
+    return Math.round(rand);
+  };
+  const leftArg = getRandInt();
+  const rightArg = getRandInt();
+  const mathStat = statements[getRandInt(0, statements.length - 1)];
+  const currQuestion = `${leftArg} ${mathStat} ${rightArg}`;
+  const getCorrAnswer = (a, b, c) => {
+    switch (b) {
+      case '+':
+        return a + c;
+      case '-':
+        return a - c;
+      case '*':
+        return a * c;
+      default:
+        return 'error';
+    }
+  };
+  const correctAnswer = getCorrAnswer(leftArg, mathStat, rightArg);
+  const textTask = 'What is the result of the expression?\n';
+  return cons(textTask, cons(currQuestion, String(correctAnswer)));
 };
-
-const userMessage = 'What is the result of the expression?\n';
-const mathExprArr = fillMathExprArr();
-const mathExprArrLen = mathExprArr.length;
-
-export default() => engine(userMessage, mathExprArr, mathExprArrLen, getCorrAmount);

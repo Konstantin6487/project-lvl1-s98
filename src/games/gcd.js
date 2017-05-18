@@ -14,14 +14,16 @@ export default () => {
     const rand = (min - 0.5) + (Math.random() * ((max - min) + 1));
     return Math.round(rand);
   };
-  const getCorrAnswer = (val) => {
-    if (val === 0 || val % 2 === 0) {
-      return 'yes';
+  const getLeftArg = getRandInt();
+  const getRightArg = getRandInt();
+  const currQuestion = `${getLeftArg} ${getRightArg}`;
+  const getCorrAnswer = (a, b) => {
+    if (b === 0) {
+      return a;
     }
-    return 'no';
+    return getCorrAnswer(b, a % b);
   };
-  const currQuestion = getRandInt();
-  const correctAnswer = getCorrAnswer(currQuestion);
-  const textTask = 'Answer "yes" if number even otherwise answer "no".\n';
+  const correctAnswer = getCorrAnswer(getLeftArg, getRightArg);
+  const textTask = 'Find the greatest common divisor of given numbers.\n';
   return cons(textTask, cons(currQuestion, String(correctAnswer)));
 };
