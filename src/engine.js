@@ -4,11 +4,8 @@ const car = pair => pair('car');
 const cdr = pair => pair('cdr');
 
 export default (game) => {
-  console.log(`Welcome to Brain Games!\n${typeof game === 'function' ? car(game()) : ''}`);
+  console.log(`Welcome to Brain Games!\n${car(game())}`);
   const userName = readlineSync.question('May I have your name? ');
-  if (!game) {
-    return console.log(`Hello, ${userName}!`);
-  }
   console.log(`Hello, ${userName}!\n`);
   const runGame = (currStep, questAnswPair) => {
     if (currStep === 3) {

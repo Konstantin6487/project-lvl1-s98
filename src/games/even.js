@@ -1,3 +1,5 @@
+import engine from '../engine';
+
 const cons = (a, b) => (message) => {
   switch (message) {
     case 'car':
@@ -9,7 +11,7 @@ const cons = (a, b) => (message) => {
   }
 };
 
-export default () => {
+const brainEven = () => {
   const getRandInt = (min = 0, max = 100) => {
     const rand = (min - 0.5) + (Math.random() * ((max - min) + 1));
     return Math.round(rand);
@@ -25,3 +27,5 @@ export default () => {
   const textTask = 'Answer "yes" if number even otherwise answer "no".\n';
   return cons(textTask, cons(currQuestion, String(correctAnswer)));
 };
+
+export default () => engine(brainEven);
