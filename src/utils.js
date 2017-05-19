@@ -8,7 +8,7 @@ export const cons = (a, b) => (message) => {
       return 'error';
   }
 };
-export const getRandInt = (min = 100, max = 9999) => {
+export const getRandInt = (min = 1, max = 100) => {
   const rand = (min - 0.5) + (Math.random() * ((max - min) + 1));
   return Math.round(rand);
 };

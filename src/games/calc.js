@@ -1,22 +1,8 @@
 import engine from '../engine';
-
-const cons = (a, b) => (message) => {
-  switch (message) {
-    case 'car':
-      return a;
-    case 'cdr':
-      return b;
-    default:
-      return 'error';
-  }
-};
+import { cons, getRandInt } from '../utils';
 
 const brainCalc = () => {
   const statements = ['+', '-', '*'];
-  const getRandInt = (min = 0, max = 100) => {
-    const rand = (min - 0.5) + (Math.random() * ((max - min) + 1));
-    return Math.round(rand);
-  };
   const leftArg = getRandInt();
   const rightArg = getRandInt();
   const mathStat = statements[getRandInt(0, statements.length - 1)];
@@ -34,7 +20,7 @@ const brainCalc = () => {
     }
   };
   const correctAnswer = getCorrAnswer(leftArg, mathStat, rightArg);
-  const textTask = 'What is the result of the expression?\n';
+  const textTask = 'What is the result of the expression?';
   return cons(textTask, cons(currQuestion, String(correctAnswer)));
 };
 

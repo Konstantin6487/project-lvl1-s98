@@ -4,7 +4,7 @@ const car = pair => pair('car');
 const cdr = pair => pair('cdr');
 
 export default (game) => {
-  console.log(`Welcome to Brain Games!\n${car(game())}`);
+  console.log(`Welcome to Brain Games!\n${car(game())}\n`);
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!\n`);
   const runGame = (currStep, questAnswPair) => {
@@ -13,7 +13,7 @@ export default (game) => {
     }
     const userAnswer = readlineSync.question(`Question: ${car(questAnswPair)} `);
     if (cdr(questAnswPair) === userAnswer) {
-      console.log(`Your answer: ${userAnswer}\nCorrect!\n`);
+      console.log(`Your answer: ${userAnswer}\nCorrect!`);
       return runGame(currStep + 1, cdr(game()));
     }
     if (cdr(questAnswPair) !== userAnswer) {

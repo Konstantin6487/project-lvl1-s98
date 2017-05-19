@@ -1,21 +1,7 @@
 import engine from '../engine';
-
-const cons = (a, b) => (message) => {
-  switch (message) {
-    case 'car':
-      return a;
-    case 'cdr':
-      return b;
-    default:
-      return 'error';
-  }
-};
+import { cons, getRandInt } from '../utils';
 
 const brainProgression = () => {
-  const getRandInt = (min = 0, max = 100) => {
-    const rand = (min - 0.5) + (Math.random() * ((max - min) + 1));
-    return Math.round(rand);
-  };
   const getProgress = (int, step, intIndex = 0, acc = []) => {
     if (intIndex > 9) {
       return acc;
@@ -25,13 +11,9 @@ const brainProgression = () => {
   const currProgress = getProgress(getRandInt(), getRandInt());
   const randElemPos = getRandInt(0, 9);
   const correctAnswer = currProgress[randElemPos];
-  const currQuestion = currProgress.map((item, i) => {
-    if (i === randElemPos) {
-      return '..';
-    }
-    return item;
-  }).join(' ');
-  const textTask = 'What number is missing in this progression?\n';
+  currProgress[randElemPos] = '..';
+  const currQuestion = currProgress.join(' ');
+  const textTask = 'What number is missing in this progression?';
   return cons(textTask, cons(currQuestion, String(correctAnswer)));
 };
 

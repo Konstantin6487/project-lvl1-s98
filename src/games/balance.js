@@ -1,38 +1,30 @@
 import engine from '../engine';
-
-const cons = (a, b) => (message) => {
-  switch (message) {
-    case 'car':
-      return a;
-    case 'cdr':
-      return b;
-    default:
-      return 'error';
-  }
-};
+import { cons, getRandInt } from '../utils';
 
 const brainBalance = () => {
-  const getRandInt = (min = 100, max = 9999) => {
-    const rand = (min - 0.5) + (Math.random() * ((max - min) + 1));
-    return Math.round(rand);
-  };
   const getCorrAnswer = (int) => {
-    const arr = String(int).split('').sort().map(item => +item);
-    const arrLength = arr.length;
-    for (let i = 0; i < arrLength; i += 1) {
-      for (let j = 0; j < arrLength; j += 1) {
-        if ((arr[i + j] - arr[i]) > 1) {
-          arr[i] += 1;
-          arr[i + j] -= 1;
-        }
-      }
+    const intToArr = Array.from(int.toString()).map(Number);
+    if (intToArr.every(item => item === intToArr[0])) {
+      return intToArr.join('');
     }
-    const sortArr = arr.sort();
-    return sortArr[arrLength - 1] - sortArr[0] > 1 ? getCorrAnswer(sortArr.join('')) : sortArr.join('');
+    const fixLengthArr = intToArr.slice().fill(0);
+    let sumOfDigits = intToArr.reduce((acc, item) => acc + item);
+    const fn = (arr = fixLengthArr) => {
+      const newArr = arr.reduce((acc, _, i) => {
+        if (sumOfDigits === 0) {
+          return acc;
+        }
+        sumOfDigits -= 1;
+        acc[i] += 1;
+        return acc;
+      }, arr);
+      return sumOfDigits === 0 ? newArr.reverse().join('') : fn(newArr);
+    };
+    return fn();
   };
-  const currQuestion = getRandInt();
+  const currQuestion = getRandInt(100, 500);
   const correctAnswer = getCorrAnswer(currQuestion);
-  const textTask = 'Balance the given number.\n';
+  const textTask = 'Balance the given number.';
   return cons(textTask, cons(currQuestion, correctAnswer));
 };
 
