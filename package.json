@@ -3,7 +3,7 @@
   "version": "0.6.3",
   "description": "",
   "main": "index.js",
-  "author": "Konstantin6487 <Konstantin6487@rambler.ru>",
+  "author": "Konstantin Bochinin <Konstantin6487@rambler.ru>",
   "bin": {
     "brain-even": "dist/bin/brain-even.js",
     "brain-calc": "dist/bin/brain-calc.js",
@@ -17,6 +17,10 @@
     "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
     "prepublish": "npm run build",
     "eslint": "eslint src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Konstantin6487/project-lvl1-s98.git"
   },
   "license": "MIT",
   "dependencies": {
