@@ -1,7 +1,5 @@
 import readlineSync from 'readline-sync';
-
-const car = pair => pair('car');
-const cdr = pair => pair('cdr');
+import { car, cdr } from './utils';
 
 export default (game) => {
   console.log(`Welcome to Brain Games!\n${car(game())}\n`);
