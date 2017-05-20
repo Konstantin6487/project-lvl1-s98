@@ -1,6 +1,6 @@
 {
   "name": "brain-games_konstantin6487",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "Simple CLI brain games ;)",
   "main": "index.js",
   "author": "Konstantin Bochinin <Konstantin6487@rambler.ru>",

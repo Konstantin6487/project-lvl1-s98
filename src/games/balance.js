@@ -1,4 +1,4 @@
-import engine from '../engine';
+import engine from '../index';
 import { cons, getRandInt } from '../utils';
 
 const brainBalance = () => {
